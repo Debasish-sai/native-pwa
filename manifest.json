@@ -2,7 +2,7 @@
     "name": "John Doe - Portfolio",
     "short_name": "John Doe",
     "description": "Full Stack Developer Portfolio - Progressive Web App",
-    "start_url": "./",
+    "start_url": "/",
     "scope": "/",
     "display": "standalone",
     "background_color": "#000000",
