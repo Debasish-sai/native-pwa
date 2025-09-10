@@ -1,22 +1,109 @@
 {
     "name": "John Doe - Portfolio",
     "short_name": "John Doe",
-    "description": "Full Stack Developer Portfolio",
+    "description": "Full Stack Developer Portfolio - Progressive Web App",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#1e40af",
+    "background_color": "#000000",
+    "theme_color": "#2563eb",
     "orientation": "portrait-primary",
+    "lang": "en",
+    "dir": "ltr",
+    "categories": [
+        "productivity",
+        "utilities",
+        "developer"
+    ],
     "icons": [
         {
-            "src": "https://placehold.co/192x192/1e40af/ffffff?text=JD",
+            "src": "data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='12' fill='%232563eb'/%3E%3Ctext x='96' y='120' text-anchor='middle' fill='white' font-size='64' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/svg+xml",
+            "purpose": "any"
         },
         {
-            "src": "https://placehold.co/512x512/1e40af/ffffff?text=JD",
+            "src": "data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='48' fill='%232563eb'/%3E%3Ctext x='96' y='120' text-anchor='middle' fill='white' font-size='64' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='512' height='512' rx='32' fill='%232563eb'/%3E%3Ctext x='256' y='320' text-anchor='middle' fill='white' font-size='180' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='512' height='512' rx='128' fill='%232563eb'/%3E%3Ctext x='256' y='320' text-anchor='middle' fill='white' font-size='180' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
         }
-    ]
+    ],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,%3Csvg width='1280' height='720' viewBox='0 0 1280 720' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1280' height='720' fill='%23000'/%3E%3Ctext x='640' y='360' text-anchor='middle' fill='%23fff' font-size='48' font-family='Arial'%3EJohn Doe Portfolio%3C/text%3E%3C/svg%3E",
+            "sizes": "1280x720",
+            "type": "image/svg+xml",
+            "form_factor": "wide",
+            "label": "Portfolio Desktop View"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg width='390' height='844' viewBox='0 0 390 844' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='390' height='844' fill='%23000'/%3E%3Ctext x='195' y='422' text-anchor='middle' fill='%23fff' font-size='24' font-family='Arial'%3EMobile Portfolio%3C/text%3E%3C/svg%3E",
+            "sizes": "390x844",
+            "type": "image/svg+xml",
+            "form_factor": "narrow",
+            "label": "Portfolio Mobile View"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "About",
+            "short_name": "About",
+            "description": "Learn about John Doe",
+            "url": "/#about",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='12' fill='%232563eb'/%3E%3Ctext x='48' y='60' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3Ei%3C/text%3E%3C/svg%3E",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Projects",
+            "short_name": "Projects",
+            "description": "View portfolio projects",
+            "url": "/#projects",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='12' fill='%232563eb'/%3E%3Ctext x='48' y='60' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3E📁%3C/text%3E%3C/svg%3E",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Contact",
+            "short_name": "Contact",
+            "description": "Get in touch",
+            "url": "/#contact",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='96' height='96' rx='12' fill='%232563eb'/%3E%3Ctext x='48' y='60' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3E✉️%3C/text%3E%3C/svg%3E",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "handle_links": "preferred",
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    }
 }

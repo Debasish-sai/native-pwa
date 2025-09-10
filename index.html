@@ -3,167 +3,1028 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>John Doe - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="description" content="John Doe - Full Stack Developer Portfolio">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1e40af">
+
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="John Doe">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='48' fill='%232563eb'/%3E%3Ctext x='96' y='120' text-anchor='middle' fill='white' font-size='64' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+            overflow-x: hidden;
         }
 
-        .gradient-bg {
-            background-image: linear-gradient(to right, #1e40af, #3b82f6);
+        html {
+            scroll-behavior: smooth;
         }
 
-        .card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .icon-container {
-            width: 150px;
-            height: 150px;
-            border: 4px solid #fff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .install-prompt-container {
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="800" r="400" fill="url(%23a)"/></svg>') no-repeat center;
+            background-size: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        /* About Section */
+        .about {
+            background: #111;
+            padding: 5rem 2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #2563eb, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #222;
+            padding: 5rem 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .skill-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-description {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #111;
+            padding: 5rem 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #2563eb;
+            color: #fff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #1d4ed8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #222;
+            padding: 5rem 2rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-text {
+            color: #ccc;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #1d4ed8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        /* PWA Install Button */
+        .install-button {
             position: fixed;
             bottom: 20px;
+            right: 20px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            display: none;
+            z-index: 1001;
+        }
+
+        .install-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .install-button.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 70px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
+            background: #dc2626;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 1002;
             display: none;
         }
 
-        @media (max-width: 640px) {
-            .install-prompt-container {
-                bottom: 100px;
+        .offline-indicator.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateX(-50%) translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .install-button {
+                bottom: 10px;
+                right: 10px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Safe area for notched devices */
+        @supports (padding: env(safe-area-inset-top)) {
+            .header {
+                padding-top: calc(1rem + env(safe-area-inset-top));
+            }
+
+            .install-button {
+                bottom: calc(20px + env(safe-area-inset-bottom));
+                right: calc(20px + env(safe-area-inset-right));
             }
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col justify-center items-center p-4">
-
-    <header class="text-center mb-10">
-        <div class="icon-container rounded-full mx-auto mb-4 overflow-hidden">
-            <img class="w-full h-full object-cover" src="https://placehold.co/150x150/2563eb/ffffff?text=JD"
-                alt="John Doe profile icon">
-        </div>
-        <h1 class="text-5xl font-bold text-gray-800">John Doe</h1>
-        <p class="text-xl text-gray-600 mt-2">Full Stack Developer</p>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">JD</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+        </nav>
     </header>
 
-    <main class="w-full max-w-4xl p-8 rounded-lg card">
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">About Me</h2>
-            <p class="text-gray-700 leading-relaxed">
-                I am a passionate and results-driven full-stack developer with a strong focus on building scalable and
-                efficient web applications. With a solid foundation in both front-end and back-end technologies, I enjoy
-                bringing creative ideas to life. I am a lifelong learner, always exploring new technologies to deliver
-                high-quality, user-friendly solutions.
-            </p>
-        </section>
+    <!-- PWA Install Button -->
+    <button class="install-button" onclick="installPWA()">
+        📱 Install App
+    </button>
 
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Skills</h2>
-            <div class="flex flex-wrap gap-2">
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">React</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">Node.js</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">Express</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">MongoDB</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">Tailwind CSS</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
-                <span class="bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Contact</h2>
-            <p class="text-gray-700">Feel free to reach out to me via email or connect with me on social media.</p>
-            <div class="mt-4 flex flex-col sm:flex-row gap-4">
-                <a href="mailto:john.doe@example.com"
-                    class="gradient-bg text-white px-6 py-2 rounded-lg font-semibold text-center hover:opacity-90 transition-opacity">
-                    Email Me
-                </a>
-                <a href="#"
-                    class="bg-gray-700 text-white px-6 py-2 rounded-lg font-semibold text-center hover:opacity-90 transition-opacity">
-                    LinkedIn
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Custom PWA Install Prompt -->
-    <div id="install-prompt-container" class="install-prompt-container">
-        <div class="bg-white p-4 rounded-lg shadow-lg flex items-center justify-between gap-4">
-            <p class="text-gray-800 font-semibold">Install this app for a better experience!</p>
-            <button id="install-button"
-                class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                Install
-            </button>
-        </div>
+    <!-- Offline Indicator -->
+    <div class="offline-indicator">
+        🔴 You're offline
     </div>
 
+    <!-- Loading Spinner -->
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">John Doe</h1>
+            <p class="hero-subtitle">Full Stack Developer & UI/UX Designer</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-image">👨‍💻</div>
+            <div class="about-text">
+                <h2 class="section-title">About Me</h2>
+                <p>I'm a passionate full-stack developer with 5+ years of experience creating beautiful, functional web
+                    applications. I specialize in modern JavaScript frameworks, responsive design, and creating seamless
+                    user experiences.</p>
+                <br>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source
+                    projects, or sharing knowledge with the developer community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">⚛️</div>
+                <h3 class="skill-title">React</h3>
+                <p class="skill-description">Building dynamic user interfaces with React and Redux</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🟢</div>
+                <h3 class="skill-title">Node.js</h3>
+                <p class="skill-description">Server-side development with Express and MongoDB</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">UI/UX</h3>
+                <p class="skill-description">Creating beautiful and intuitive user experiences</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <h3 class="skill-title">Mobile First</h3>
+                <p class="skill-description">Responsive design and progressive web apps</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">A full-stack e-commerce solution with React, Node.js, and Stripe
+                        integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3 class="project-title">Analytics Dashboard</h3>
+                    <p class="project-description">Real-time analytics dashboard with interactive charts and data
+                        visualization.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🎵</div>
+                <div class="project-content">
+                    <h3 class="project-title">Music Streaming App</h3>
+                    <p class="project-description">Progressive Web App for music streaming with offline playback
+                        capabilities.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PWA</span>
+                        <span class="tech-tag">Web Audio API</span>
+                        <span class="tech-tag">IndexedDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-text">I'm always interested in new opportunities and exciting projects. Let's connect!</p>
+            <div class="contact-links">
+                <a href="mailto:john@example.com" class="contact-link">📧 Email</a>
+                <a href="https://linkedin.com/in/johndoe" class="contact-link">💼 LinkedIn</a>
+                <a href="https://github.com/johndoe" class="contact-link">💻 GitHub</a>
+                <a href="https://twitter.com/johndoe" class="contact-link">🐦 Twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 John Doe. Built with ❤️ as a Progressive Web App.</p>
+    </footer>
+
+    <!-- SEO Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Doe",
+        "jobTitle": "Full Stack Developer",
+        "description": "Passionate full-stack developer specializing in modern web technologies",
+        "url": "https://johndoe-portfolio.example.com",
+        "sameAs": [
+            "https://linkedin.com/in/johndoe",
+            "https://github.com/johndoe",
+            "https://twitter.com/johndoe"
+        ]
+    }
+    </script>
+
+    <!-- Main JavaScript -->
     <script>
-        // Check for Service Worker support
+        // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('./sw.js')
                     .then(registration => {
-                        console.log('Service Worker registered with scope:', registration.scope);
+                        console.log('SW registered successfully: ', registration);
+                        return navigator.serviceWorker.ready;
                     })
-                    .catch(error => {
-                        console.error('Service Worker registration failed:', error);
+                    .then(registration => {
+                        console.log('Service Worker is ready');
+                        checkInstallability();
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                        setTimeout(checkInstallability, 2000);
                     });
+            });
+        } else {
+            console.log('Service Workers not supported');
+            setTimeout(checkInstallability, 1000);
+        }
+
+        // Function to check if PWA can be installed
+        function checkInstallability() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIOS && !isStandalone) {
+                setTimeout(() => {
+                    installButton.classList.add('show');
+                    showIOSInstallPrompt();
+                }, 1000);
+                return;
+            }
+
+            let promptFired = false;
+
+            const timeoutId = setTimeout(() => {
+                if (!promptFired && !isStandalone) {
+                    console.log('beforeinstallprompt did not fire, showing manual install');
+                    installButton.classList.add('show');
+                }
+            }, 5000);
+
+            window.addEventListener('beforeinstallprompt', () => {
+                promptFired = true;
+                clearTimeout(timeoutId);
             });
         }
 
+        // PWA Install functionality
         let deferredPrompt;
-        const installPromptContainer = document.getElementById('install-prompt-container');
-        const installButton = document.getElementById('install-button');
+        const installButton = document.querySelector('.install-button');
 
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
+            console.log('beforeinstallprompt fired');
             e.preventDefault();
-            // Stash the event so it can be triggered later.
             deferredPrompt = e;
-            // Show the custom install prompt
-            installPromptContainer.style.display = 'block';
+            installButton.classList.add('show');
+        });
 
-            installButton.addEventListener('click', () => {
-                // Hide the custom install button
-                installPromptContainer.style.display = 'none';
-                // Show the browser's install prompt
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    // Wait for the user to respond to the prompt
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            console.log('User accepted the install prompt');
-                        } else {
-                            console.log('User dismissed the install prompt');
-                        }
-                        deferredPrompt = null;
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    console.log('User choice:', choiceResult.outcome);
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('PWA installed');
+                        installButton.classList.remove('show');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                showManualInstallInstructions();
+            }
+        }
+
+        // Manual install instructions
+        function showManualInstallInstructions() {
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isMobile = isAndroid || isIOS;
+
+            let instructions = '';
+            if (isAndroid) {
+                instructions = 'Tap the menu (⋮) and select "Add to Home screen" or "Install app"';
+            } else if (isIOS) {
+                instructions = 'Tap the Share button (□↑) and select "Add to Home Screen"';
+            } else if (isMobile) {
+                instructions = 'Look for "Add to Home Screen" or "Install" option in your browser menu';
+            } else {
+                instructions = 'Look for the install icon in your browser\'s address bar or menu';
+            }
+
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 1rem;
+            `;
+
+            modal.innerHTML = `
+                <div style="background: #222; color: #fff; padding: 2rem; border-radius: 15px; max-width: 400px; text-align: center;">
+                    <h3 style="margin-bottom: 1rem; color: #2563eb;">Install Portfolio App</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6;">${instructions}</p>
+                    <button onclick="this.closest('[style*=fixed]').remove()" 
+                            style="background: #2563eb; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        Got it!
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+        }
+
+        // Enhanced iOS install prompt
+        function showIOSInstallPrompt() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIOS && !isStandalone) {
+                if (sessionStorage.getItem('iosPromptShown')) {
+                    return;
+                }
+                sessionStorage.setItem('iosPromptShown', 'true');
+
+                const iosPrompt = document.createElement('div');
+                iosPrompt.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    left: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                    color: #fff;
+                    padding: 1.5rem;
+                    border-radius: 15px;
+                    font-size: 0.9rem;
+                    z-index: 1003;
+                    text-align: center;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    animation: slideUp 0.5s ease;
+                `;
+                iosPrompt.innerHTML = `
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                    <p style="margin-bottom: 1rem; font-weight: 600;">Install Portfolio App</p>
+                    <p style="margin-bottom: 1rem; opacity: 0.9;">Tap <strong>Share</strong> <span style="font-size: 1.2rem;">□↑</span> then <strong>Add to Home Screen</strong></p>
+                    <button onclick="this.parentElement.remove()" 
+                            style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; backdrop-filter: blur(10px);">
+                        Got it!
+                    </button>
+                `;
+
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideUp {
+                        from { transform: translateY(100px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+
+                document.body.appendChild(iosPrompt);
+
+                setTimeout(() => {
+                    if (iosPrompt.parentElement) {
+                        iosPrompt.style.animation = 'slideUp 0.5s ease reverse';
+                        setTimeout(() => iosPrompt.remove(), 500);
+                    }
+                }, 15000);
+            }
+        }
+
+        // Hide install button when app is installed
+        window.addEventListener('appinstalled', () => {
+            installButton.classList.remove('show');
+            console.log('PWA was installed');
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        window.addEventListener('appinstalled', (e) => {
-            console.log('PWA was installed');
-            // Hide the install prompt if it's visible
-            installPromptContainer.style.display = 'none';
+        // Online/Offline status
+        const offlineIndicator = document.querySelector('.offline-indicator');
+
+        function updateOnlineStatus() {
+            if (navigator.onLine) {
+                offlineIndicator.classList.remove('show');
+            } else {
+                offlineIndicator.classList.add('show');
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        // Loading state management
+        const loading = document.querySelector('.loading');
+
+        function showLoading() {
+            loading.style.display = 'block';
+        }
+
+        function hideLoading() {
+            loading.style.display = 'none';
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
         });
 
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const navigation = performance.getEntriesByType('navigation')[0];
+                console.log('Page load time:', navigation.loadEventEnd - navigation.fetchStart, 'ms');
+            });
+        }
+
+        // Update cache periodically
+        function updateCache() {
+            if ('serviceWorker' in navigator && 'caches' in window) {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.update();
+                });
+            }
+        }
+
+        // Update cache every hour when page is visible
+        setInterval(() => {
+            if (!document.hidden) {
+                updateCache();
+            }
+        }, 3600000); // 1 hour
+
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                updateCache();
+            }
+        });
     </script>
 </body>
 
