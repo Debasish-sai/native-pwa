@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Doe - Portfolio</title>
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#2563eb">
     <meta name="description" content="John Doe - Full Stack Developer Portfolio">
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkpvaG4gRG9lIC0gUG9ydGZvbGlvIiwKICAic2hvcnRfbmFtZSI6ICJKb2huIERvZSIsCiAgImRlc2NyaXB0aW9uIjogIkZ1bGwgU3RhY2sgRGV2ZWxvcGVyIFBvcnRmb2xpbyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiMyNTYzZWIiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRFeUlpQm9aV2xuYUhROUlqRXhNaUlnZG1sbGQwSnZlRDBpTUNBd0lERXhNaUF4TVRJaUlHWnBiR3c5SWlNeU5UWXpaV0lpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrUEdOcGNtTnNaU0JqZUQwaU5UWWlJR041UFNJMU5pSWdjajBpTkRZaUlHWnBiR3c5SWlObVptWWlMejRnUEhSbGVIUWdlRDBpTlRZaUlIazlJalkySWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQm1hV3hzUFNJak1qVTJNMlZpSWo1S1JEd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjExMngxMTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0sCiAgImNhdGVnb3JpZXMiOiBbInBvcnRmb2xpbyIsICJkZXZlbG9wZXIiXQp9">
-    
+    <link rel="manifest"
+        href="data:application/json;base64,ewogICJuYW1lIjogIkpvaG4gRG9lIC0gUG9ydGZvbGlvIiwKICAic2hvcnRfbmFtZSI6ICJKb2huIERvZSIsCiAgImRlc2NyaXB0aW9uIjogIkZ1bGwgU3RhY2sgRGV2ZWxvcGVyIFBvcnRmb2xpbyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiMyNTYzZWIiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRFeUlpQm9aV2xuYUhROUlqRXhNaUlnZG1sbGQwSnZlRDBpTUNBd0lERXhNaUF4TVRJaUlHWnBiR3c5SWlNeU5UWXpaV0lpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrUEdOcGNtTnNaU0JqZUQwaU5UWWlJR041UFNJMU5pSWdjajBpTkRZaUlHWnBiR3c5SWlObVptWWlMejRnUEhSbGVIUWdlRDBpTlRZaUlIazlJalkySWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQm1hV3hzUFNJak1qVTJNMlZpSWo1S1JEd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjExMngxMTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0sCiAgImNhdGVnb3JpZXMiOiBbInBvcnRmb2xpbyIsICJkZXZlbG9wZXIiXQp9">
+
     <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="John Doe">
-    
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -117,8 +119,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .hero-content {
@@ -171,6 +180,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -430,6 +440,7 @@
                 transform: translateX(100px);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -461,6 +472,7 @@
                 transform: translateX(-50%) translateY(-100px);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(-50%) translateY(0);
                 opacity: 1;
@@ -532,11 +544,17 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -583,9 +601,12 @@
             <div class="about-image">👨‍💻</div>
             <div class="about-text">
                 <h2 class="section-title">About Me</h2>
-                <p>I'm a passionate full-stack developer with 5+ years of experience creating beautiful, functional web applications. I specialize in modern JavaScript frameworks, responsive design, and creating seamless user experiences.</p>
+                <p>I'm a passionate full-stack developer with 5+ years of experience creating beautiful, functional web
+                    applications. I specialize in modern JavaScript frameworks, responsive design, and creating seamless
+                    user experiences.</p>
                 <br>
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source
+                    projects, or sharing knowledge with the developer community.</p>
             </div>
         </div>
     </section>
@@ -625,7 +646,8 @@
                 <div class="project-image">🚀</div>
                 <div class="project-content">
                     <h3 class="project-title">E-Commerce Platform</h3>
-                    <p class="project-description">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
+                    <p class="project-description">A full-stack e-commerce solution with React, Node.js, and Stripe
+                        integration.</p>
                     <div class="project-tech">
                         <span class="tech-tag">React</span>
                         <span class="tech-tag">Node.js</span>
@@ -642,7 +664,8 @@
                 <div class="project-image">📊</div>
                 <div class="project-content">
                     <h3 class="project-title">Analytics Dashboard</h3>
-                    <p class="project-description">Real-time analytics dashboard with interactive charts and data visualization.</p>
+                    <p class="project-description">Real-time analytics dashboard with interactive charts and data
+                        visualization.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Vue.js</span>
                         <span class="tech-tag">D3.js</span>
@@ -658,7 +681,8 @@
                 <div class="project-image">🎵</div>
                 <div class="project-content">
                     <h3 class="project-title">Music Streaming App</h3>
-                    <p class="project-description">Progressive Web App for music streaming with offline playback capabilities.</p>
+                    <p class="project-description">Progressive Web App for music streaming with offline playback
+                        capabilities.</p>
                     <div class="project-tech">
                         <span class="tech-tag">PWA</span>
                         <span class="tech-tag">Web Audio API</span>
@@ -993,29 +1017,44 @@
             });
         `;
 
-        // Register the service worker using a blob URL
+        // Register the service worker using a blob URL (works in all environments)
         if ('serviceWorker' in navigator) {
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(blob);
-            
-            navigator.serviceWorker.register(swUrl)
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                    
-                    // Check for updates
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // Show update available notification
-                                showUpdateNotification();
-                            }
+            // Wait for page to load before registering SW
+            window.addEventListener('load', () => {
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => {
+                        console.log('SW registered successfully: ', registration);
+
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // Show update available notification
+                                    showUpdateNotification();
+                                }
+                            });
                         });
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                        // Fallback: still show install button even without SW
+                        setTimeout(() => {
+                            if (!installButton.classList.contains('show')) {
+                                installButton.classList.add('show');
+                            }
+                        }, 3000);
                     });
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
+            });
+        } else {
+            console.log('Service Workers not supported');
+            // Show install button anyway for browsers that support PWA without SW
+            setTimeout(() => {
+                installButton.classList.add('show');
+            }, 3000);
         }
 
         // Show update notification
@@ -1040,7 +1079,7 @@
         function showIOSInstallPrompt() {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             const isStandalone = window.navigator.standalone;
-            
+
             if (isIOS && !isStandalone) {
                 // Show iOS install instructions
                 const iosPrompt = document.createElement('div');
@@ -1063,7 +1102,7 @@
                     <button onclick="this.parentElement.remove()" style="background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-top: 0.5rem; cursor: pointer;">Got it!</button>
                 `;
                 document.body.appendChild(iosPrompt);
-                
+
                 // Auto hide after 10 seconds
                 setTimeout(() => {
                     if (iosPrompt.parentElement) {
@@ -1132,4 +1171,5 @@
         });
     </script>
 </body>
+
 </html>
