@@ -3,19 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>John Doe - Portfolio</title>
 
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#2563eb">
     <meta name="description" content="John Doe - Full Stack Developer Portfolio">
-    <link rel="manifest"
-        href="data:application/json;base64,ewogICJuYW1lIjogIkpvaG4gRG9lIC0gUG9ydGZvbGlvIiwKICAic2hvcnRfbmFtZSI6ICJKb2huIERvZSIsCiAgImRlc2NyaXB0aW9uIjogIkZ1bGwgU3RhY2sgRGV2ZWxvcGVyIFBvcnRmb2xpbyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiMyNTYzZWIiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRFeUlpQm9aV2xuYUhROUlqRXhNaUlnZG1sbGQwSnZlRDBpTUNBd0lERXhNaUF4TVRJaUlHWnBiR3c5SWlNeU5UWXpaV0lpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrUEdOcGNtTnNaU0JqZUQwaU5UWWlJR041UFNJMU5pSWdjajBpTkRZaUlHWnBiR3c5SWlObVptWWlMejRnUEhSbGVIUWdlRDBpTlRZaUlIazlJalkySWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQm1hV3hzUFNJak1qVTJNMlZpSWo1S1JEd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjExMngxMTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0sCiAgImNhdGVnb3JpZXMiOiBbInBvcnRmb2xpbyIsICJkZXZlbG9wZXIiXQp9">
+    <link rel="manifest" href="manifest.json">
 
     <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="John Doe">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='48' fill='%232563eb'/%3E%3Ctext x='96' y='120' text-anchor='middle' fill='white' font-size='64' font-family='Arial, sans-serif' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
@@ -479,6 +479,35 @@
             }
         }
 
+        /* Loading animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -524,32 +553,15 @@
             }
         }
 
-        /* Loading animation */
-        .loading {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #333;
-            border-top: 4px solid #2563eb;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
+        /* Safe area for notched devices */
+        @supports (padding: env(safe-area-inset-top)) {
+            .header {
+                padding-top: calc(1rem + env(safe-area-inset-top));
             }
 
-            100% {
-                transform: rotate(360deg);
+            .install-button {
+                bottom: calc(20px + env(safe-area-inset-bottom));
+                right: calc(20px + env(safe-area-inset-right));
             }
         }
     </style>
@@ -716,16 +728,73 @@
         <p>&copy; 2025 John Doe. Built with ❤️ as a Progressive Web App.</p>
     </footer>
 
+    <!-- SEO Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Doe",
+        "jobTitle": "Full Stack Developer",
+        "description": "Passionate full-stack developer specializing in modern web technologies",
+        "url": "https://johndoe-portfolio.example.com",
+        "sameAs": [
+            "https://linkedin.com/in/johndoe",
+            "https://github.com/johndoe",
+            "https://twitter.com/johndoe"
+        ]
+    }
+    </script>
+
+    <!-- Main JavaScript -->
     <script>
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registered successfully: ', registration);
+                        return navigator.serviceWorker.ready;
+                    })
+                    .then(registration => {
+                        console.log('Service Worker is ready');
+                        checkInstallability();
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                        setTimeout(checkInstallability, 2000);
+                    });
+            });
+        } else {
+            console.log('Service Workers not supported');
+            setTimeout(checkInstallability, 1000);
+        }
+
+        // Function to check if PWA can be installed
+        function checkInstallability() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIOS && !isStandalone) {
+                setTimeout(() => {
+                    installButton.classList.add('show');
+                    showIOSInstallPrompt();
+                }, 1000);
+                return;
+            }
+
+            let promptFired = false;
+
+            const timeoutId = setTimeout(() => {
+                if (!promptFired && !isStandalone) {
+                    console.log('beforeinstallprompt did not fire, showing manual install');
+                    installButton.classList.add('show');
+                }
+            }, 5000);
+
+            window.addEventListener('beforeinstallprompt', () => {
+                promptFired = true;
+                clearTimeout(timeoutId);
+            });
         }
 
         // PWA Install functionality
@@ -733,6 +802,7 @@
         const installButton = document.querySelector('.install-button');
 
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('beforeinstallprompt fired');
             e.preventDefault();
             deferredPrompt = e;
             installButton.classList.add('show');
@@ -742,12 +812,118 @@
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
+                    console.log('User choice:', choiceResult.outcome);
                     if (choiceResult.outcome === 'accepted') {
                         console.log('PWA installed');
                         installButton.classList.remove('show');
                     }
                     deferredPrompt = null;
                 });
+            } else {
+                showManualInstallInstructions();
+            }
+        }
+
+        // Manual install instructions
+        function showManualInstallInstructions() {
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isMobile = isAndroid || isIOS;
+
+            let instructions = '';
+            if (isAndroid) {
+                instructions = 'Tap the menu (⋮) and select "Add to Home screen" or "Install app"';
+            } else if (isIOS) {
+                instructions = 'Tap the Share button (□↑) and select "Add to Home Screen"';
+            } else if (isMobile) {
+                instructions = 'Look for "Add to Home Screen" or "Install" option in your browser menu';
+            } else {
+                instructions = 'Look for the install icon in your browser\'s address bar or menu';
+            }
+
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 1rem;
+            `;
+
+            modal.innerHTML = `
+                <div style="background: #222; color: #fff; padding: 2rem; border-radius: 15px; max-width: 400px; text-align: center;">
+                    <h3 style="margin-bottom: 1rem; color: #2563eb;">Install Portfolio App</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6;">${instructions}</p>
+                    <button onclick="this.closest('[style*=fixed]').remove()" 
+                            style="background: #2563eb; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        Got it!
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+        }
+
+        // Enhanced iOS install prompt
+        function showIOSInstallPrompt() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIOS && !isStandalone) {
+                if (sessionStorage.getItem('iosPromptShown')) {
+                    return;
+                }
+                sessionStorage.setItem('iosPromptShown', 'true');
+
+                const iosPrompt = document.createElement('div');
+                iosPrompt.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    left: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                    color: #fff;
+                    padding: 1.5rem;
+                    border-radius: 15px;
+                    font-size: 0.9rem;
+                    z-index: 1003;
+                    text-align: center;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    animation: slideUp 0.5s ease;
+                `;
+                iosPrompt.innerHTML = `
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                    <p style="margin-bottom: 1rem; font-weight: 600;">Install Portfolio App</p>
+                    <p style="margin-bottom: 1rem; opacity: 0.9;">Tap <strong>Share</strong> <span style="font-size: 1.2rem;">□↑</span> then <strong>Add to Home Screen</strong></p>
+                    <button onclick="this.parentElement.remove()" 
+                            style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; backdrop-filter: blur(10px);">
+                        Got it!
+                    </button>
+                `;
+
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideUp {
+                        from { transform: translateY(100px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+
+                document.body.appendChild(iosPrompt);
+
+                setTimeout(() => {
+                    if (iosPrompt.parentElement) {
+                        iosPrompt.style.animation = 'slideUp 0.5s ease reverse';
+                        setTimeout(() => iosPrompt.remove(), 500);
+                    }
+                }, 15000);
             }
         }
 
@@ -809,26 +985,6 @@
             loading.style.display = 'none';
         }
 
-        // Lazy loading for images (if you add real images later)
-        function lazyLoad() {
-            const images = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            images.forEach(img => imageObserver.observe(img));
-        }
-
-        // Initialize lazy loading
-        document.addEventListener('DOMContentLoaded', lazyLoad);
-
         // Add scroll effect to header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
@@ -845,329 +1001,6 @@
                 const navigation = performance.getEntriesByType('navigation')[0];
                 console.log('Page load time:', navigation.loadEventEnd - navigation.fetchStart, 'ms');
             });
-        }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "John Doe",
-        "jobTitle": "Full Stack Developer",
-        "description": "Passionate full-stack developer specializing in modern web technologies",
-        "url": "https://johndoe-portfolio.example.com",
-        "sameAs": [
-            "https://linkedin.com/in/johndoe",
-            "https://github.com/johndoe",
-            "https://twitter.com/johndoe"
-        ]
-    }
-    </script>
-
-    <!-- Inline Service Worker for demo purposes -->
-    <script>
-        // Create service worker content as a blob
-        const swCode = `
-            const CACHE_NAME = 'portfolio-v1.0.0';
-            const urlsToCache = [
-                '/',
-                '/index.html',
-                'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
-                'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'
-            ];
-
-            // Install event - cache resources
-            self.addEventListener('install', event => {
-                console.log('Service Worker installing...');
-                event.waitUntil(
-                    caches.open(CACHE_NAME)
-                        .then(cache => {
-                            console.log('Opened cache');
-                            return cache.addAll(urlsToCache);
-                        })
-                        .catch(err => {
-                            console.log('Cache add failed:', err);
-                        })
-                );
-                self.skipWaiting();
-            });
-
-            // Activate event - clean up old caches
-            self.addEventListener('activate', event => {
-                console.log('Service Worker activating...');
-                event.waitUntil(
-                    caches.keys().then(cacheNames => {
-                        return Promise.all(
-                            cacheNames.map(cacheName => {
-                                if (cacheName !== CACHE_NAME) {
-                                    console.log('Deleting old cache:', cacheName);
-                                    return caches.delete(cacheName);
-                                }
-                            })
-                        );
-                    })
-                );
-                self.clients.claim();
-            });
-
-            // Fetch event - serve from cache, fallback to network
-            self.addEventListener('fetch', event => {
-                // Skip cross-origin requests
-                if (!event.request.url.startsWith(self.location.origin) && 
-                    !event.request.url.startsWith('https://fonts.googleapis.com') &&
-                    !event.request.url.startsWith('https://fonts.gstatic.com')) {
-                    return;
-                }
-
-                event.respondWith(
-                    caches.match(event.request)
-                        .then(response => {
-                            // Return cached version or fetch from network
-                            if (response) {
-                                console.log('Serving from cache:', event.request.url);
-                                return response;
-                            }
-                            
-                            console.log('Fetching from network:', event.request.url);
-                            return fetch(event.request).then(response => {
-                                // Don't cache if not a valid response
-                                if (!response || response.status !== 200 || response.type !== 'basic') {
-                                    return response;
-                                }
-
-                                // Clone the response
-                                const responseToCache = response.clone();
-
-                                caches.open(CACHE_NAME)
-                                    .then(cache => {
-                                        cache.put(event.request, responseToCache);
-                                    });
-
-                                return response;
-                            });
-                        })
-                        .catch(() => {
-                            // Return offline page for navigation requests
-                            if (event.request.destination === 'document') {
-                                return caches.match('/');
-                            }
-                        })
-                );
-            });
-
-            // Background sync for form submissions (future enhancement)
-            self.addEventListener('sync', event => {
-                if (event.tag === 'background-sync') {
-                    console.log('Background sync triggered');
-                    // Handle background sync tasks
-                }
-            });
-
-            // Push notifications (future enhancement)
-            self.addEventListener('push', event => {
-                if (event.data) {
-                    const data = event.data.json();
-                    const options = {
-                        body: data.body,
-                        icon: '/icon-192x192.png',
-                        badge: '/badge-72x72.png',
-                        vibrate: [100, 50, 100],
-                        data: {
-                            dateOfArrival: Date.now(),
-                            primaryKey: data.primaryKey
-                        },
-                        actions: [
-                            {
-                                action: 'explore',
-                                title: 'View Portfolio',
-                                icon: '/icon-192x192.png'
-                            },
-                            {
-                                action: 'close',
-                                title: 'Close',
-                                icon: '/icon-192x192.png'
-                            }
-                        ]
-                    };
-
-                    event.waitUntil(
-                        self.registration.showNotification(data.title, options)
-                    );
-                }
-            });
-
-            // Notification click handling
-            self.addEventListener('notificationclick', event => {
-                event.notification.close();
-
-                if (event.action === 'explore') {
-                    event.waitUntil(
-                        clients.openWindow('/')
-                    );
-                }
-            });
-
-            // Share target (if implemented)
-            self.addEventListener('fetch', event => {
-                const url = new URL(event.request.url);
-                
-                if (url.pathname === '/share-target' && event.request.method === 'POST') {
-                    event.respondWith(Response.redirect('/'));
-                }
-            });
-        `;
-
-        // Register the service worker using a blob URL (works in all environments)
-        if ('serviceWorker' in navigator) {
-            // Wait for page to load before registering SW
-            window.addEventListener('load', () => {
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-
-                navigator.serviceWorker.register(swUrl)
-                    .then(registration => {
-                        console.log('SW registered successfully: ', registration);
-
-                        // Important: Service worker needs time to install
-                        return navigator.serviceWorker.ready;
-                    })
-                    .then(registration => {
-                        console.log('Service Worker is ready');
-                        // Now we can be confident the PWA requirements are met
-                        checkInstallability();
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
-                        // Still try to show install prompts for manual installation
-                        setTimeout(checkInstallability, 2000);
-                    });
-            });
-        } else {
-            console.log('Service Workers not supported');
-            // Show install button anyway for browsers that support PWA without SW
-            setTimeout(checkInstallability, 1000);
-        }
-
-        // Function to check if PWA can be installed
-        function checkInstallability() {
-            // For iOS devices, always show the manual install prompt
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-
-            if (isIOS && !isStandalone) {
-                setTimeout(() => {
-                    installButton.classList.add('show');
-                    showIOSInstallPrompt();
-                }, 1000);
-                return;
-            }
-
-            // For Android and other platforms, wait for the beforeinstallprompt
-            // If it doesn't fire within 5 seconds, show manual install
-            let promptFired = false;
-
-            const timeoutId = setTimeout(() => {
-                if (!promptFired && !isStandalone) {
-                    console.log('beforeinstallprompt did not fire, showing manual install');
-                    installButton.classList.add('show');
-                }
-            }, 5000);
-
-            // Clear timeout if prompt fires
-            window.addEventListener('beforeinstallprompt', () => {
-                promptFired = true;
-                clearTimeout(timeoutId);
-            });
-        }
-
-        // Show update notification
-        function showUpdateNotification() {
-            if (confirm('A new version is available! Reload to update?')) {
-                window.location.reload();
-            }
-        }
-
-        // Cache management
-        function clearCache() {
-            if ('caches' in window) {
-                caches.keys().then(names => {
-                    names.forEach(name => {
-                        caches.delete(name);
-                    });
-                });
-            }
-        }
-
-        // Add to home screen prompt for iOS
-        function showIOSInstallPrompt() {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            const isStandalone = window.navigator.standalone;
-
-            if (isIOS && !isStandalone) {
-                // Show iOS install instructions
-                const iosPrompt = document.createElement('div');
-                iosPrompt.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    left: 20px;
-                    right: 20px;
-                    background: #000;
-                    color: #fff;
-                    padding: 1rem;
-                    border-radius: 10px;
-                    font-size: 0.9rem;
-                    z-index: 1003;
-                    text-align: center;
-                    border: 1px solid #333;
-                `;
-                iosPrompt.innerHTML = `
-                    <p>Install this app: tap <strong>Share</strong> and then <strong>Add to Home Screen</strong></p>
-                    <button onclick="this.parentElement.remove()" style="background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-top: 0.5rem; cursor: pointer;">Got it!</button>
-                `;
-                document.body.appendChild(iosPrompt);
-
-                // Auto hide after 10 seconds
-                setTimeout(() => {
-                    if (iosPrompt.parentElement) {
-                        iosPrompt.remove();
-                    }
-                }, 10000);
-            }
-        }
-
-        // Show iOS prompt after page load
-        window.addEventListener('load', () => {
-            setTimeout(showIOSInstallPrompt, 3000);
-        });
-
-        // Performance optimization - preload critical resources
-        function preloadCriticalResources() {
-            const criticalResources = [
-                'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
-            ];
-
-            criticalResources.forEach(resource => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.href = resource;
-                link.as = 'style';
-                document.head.appendChild(link);
-            });
-        }
-
-        // Initialize critical resource preloading
-        preloadCriticalResources();
-
-        // Add meta tag for full-screen on mobile
-        const viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.content = 'width=device-width, initial-scale=1.0, viewport-fit=cover';
-        }
-
-        // Handle safe area for notched devices
-        if (CSS.supports('padding: env(safe-area-inset-top)')) {
-            document.documentElement.style.setProperty('--safe-area-top', 'env(safe-area-inset-top)');
-            document.documentElement.style.setProperty('--safe-area-bottom', 'env(safe-area-inset-bottom)');
         }
 
         // Update cache periodically
