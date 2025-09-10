@@ -5,11 +5,9 @@ const DYNAMIC_CACHE = "dynamic-v1.0.1";
 
 // Files to cache immediately
 const STATIC_FILES = [
-  //   "/",
-  //   "/index.html",
-  "/native-pwa/",
-  "/native-pwa/index.html",
-  "/native-pwa/manifest.json",
+  "/",
+  "/index.html",
+  "/manifest.json",
   "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
 ];
 
