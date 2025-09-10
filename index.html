@@ -1028,33 +1028,56 @@
                     .then(registration => {
                         console.log('SW registered successfully: ', registration);
 
-                        // Check for updates
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // Show update available notification
-                                    showUpdateNotification();
-                                }
-                            });
-                        });
+                        // Important: Service worker needs time to install
+                        return navigator.serviceWorker.ready;
+                    })
+                    .then(registration => {
+                        console.log('Service Worker is ready');
+                        // Now we can be confident the PWA requirements are met
+                        checkInstallability();
                     })
                     .catch(registrationError => {
                         console.log('SW registration failed: ', registrationError);
-                        // Fallback: still show install button even without SW
-                        setTimeout(() => {
-                            if (!installButton.classList.contains('show')) {
-                                installButton.classList.add('show');
-                            }
-                        }, 3000);
+                        // Still try to show install prompts for manual installation
+                        setTimeout(checkInstallability, 2000);
                     });
             });
         } else {
             console.log('Service Workers not supported');
             // Show install button anyway for browsers that support PWA without SW
-            setTimeout(() => {
-                installButton.classList.add('show');
-            }, 3000);
+            setTimeout(checkInstallability, 1000);
+        }
+
+        // Function to check if PWA can be installed
+        function checkInstallability() {
+            // For iOS devices, always show the manual install prompt
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+            if (isIOS && !isStandalone) {
+                setTimeout(() => {
+                    installButton.classList.add('show');
+                    showIOSInstallPrompt();
+                }, 1000);
+                return;
+            }
+
+            // For Android and other platforms, wait for the beforeinstallprompt
+            // If it doesn't fire within 5 seconds, show manual install
+            let promptFired = false;
+
+            const timeoutId = setTimeout(() => {
+                if (!promptFired && !isStandalone) {
+                    console.log('beforeinstallprompt did not fire, showing manual install');
+                    installButton.classList.add('show');
+                }
+            }, 5000);
+
+            // Clear timeout if prompt fires
+            window.addEventListener('beforeinstallprompt', () => {
+                promptFired = true;
+                clearTimeout(timeoutId);
+            });
         }
 
         // Show update notification
