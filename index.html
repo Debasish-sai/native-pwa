@@ -9,7 +9,7 @@
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#2563eb">
     <meta name="description" content="John Doe - Full Stack Developer Portfolio">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
 
     <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -750,7 +750,8 @@
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
+                // Register service worker with correct path for GitHub Pages
+                navigator.serviceWorker.register('./sw.js', { scope: './' })
                     .then(registration => {
                         console.log('SW registered successfully: ', registration);
                         return navigator.serviceWorker.ready;
